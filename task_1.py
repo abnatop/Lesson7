@@ -20,15 +20,32 @@ class Matrix:
         self.value = value
 
     def __str__(self):
-        result = ''
-        for i in self.value:
-            result += f'{i}\n'
-        return result
+        return str('\n'.join([' '.join([str(i) for i in j]) for j in self.value]))
 
-matrix = [
+    def __add__(self, other):
+        rows = len(self.value)
+        cols = len(self.value[0])
+        print(rows, cols)
+        res = []
+        for i in range(rows):
+            row = []
+            for j in range(cols):
+                row.append(self.value[i][j] + other[i][j])
+            res.append(row)
+        return res
+
+
+matrix_one = [
     [1, 2, 3],
     [4, 5, 6]
 ]
+matrix_two = [
+    [6, 5, 4],
+    [3, 2, 1]
+]
 
-m = Matrix(matrix)
+m = Matrix(matrix_one)
+n = Matrix(matrix_two)
 print(m)
+
+# print(m + n)
