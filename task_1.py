@@ -23,29 +23,25 @@ class Matrix:
         return str('\n'.join([' '.join([str(i) for i in j]) for j in self.value]))
 
     def __add__(self, other):
-        rows = len(self.value)
-        cols = len(self.value[0])
-        print(rows, cols)
-        res = []
-        for i in range(rows):
-            row = []
-            for j in range(cols):
-                row.append(self.value[i][j] + other[i][j])
-            res.append(row)
-        return res
+        if not isinstance(other, Matrix):
+            raise ValueError('Правый операнд не класса Matrix')
 
+        sum_matrix = []
+        for m in range(len(self.value)):
+            row = list(map(lambda x, y: x + y, self.value[m], other.value[m]))
+            sum_matrix.append(row)
+
+        return Matrix(sum_matrix)
 
 matrix_one = [
     [1, 2, 3],
     [4, 5, 6]
 ]
 matrix_two = [
-    [6, 5, 4],
-    [3, 2, 1]
+    [8, 5, 4],
+    [3, 2, 3]
 ]
 
 m = Matrix(matrix_one)
 n = Matrix(matrix_two)
-print(m)
-
-# print(m + n)
+print(m + n)
