@@ -12,6 +12,7 @@ V и H, соответственно.
 """
 from abc import ABC
 
+
 class Clothes(ABC):  # Одежда
     order_number = 1
 
@@ -23,6 +24,7 @@ class Clothes(ABC):  # Одежда
     @property
     def get_material(self):
         return self._material_consumption
+
 
 class Coat(Clothes):  # Пальто, размер V = size
     summary_material = 0.0
@@ -37,6 +39,7 @@ class Coat(Clothes):  # Пальто, размер V = size
         return f'Заказ {self.order_number} - [{self.name}], размер {self.size}, ' + \
                f'расход мат-ла {self.get_material}.'
 
+
 class Suit(Clothes):  # Костюм, рост H = height
     summary_material = 0.0
 
@@ -49,6 +52,7 @@ class Suit(Clothes):  # Костюм, рост H = height
     def __str__(self):
         return f'Заказ {self.order_number} - [ {self.name} ], рост {self.height}, ' + \
                f'расход мат-ла {self.get_material}.'
+
 
 d = [
     Coat('Пальто1', size=10),

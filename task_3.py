@@ -25,3 +25,12 @@ make_order() вернет строку: *****\n*****\n** .
 Или, количество ячеек клетки равняется 15, количество ячеек в ряду — 5. Тогда метод
 make_order() вернет строку: *****\n*****\n***** .
 """
+
+class Cell:
+    def __init__(self, alveola):
+        self.alveolas = alveola
+
+    def __add__(self, other):
+        if not isinstance(other, Cell):
+            raise ValueError(f'Obj {other} is NOT a Cell')
+
