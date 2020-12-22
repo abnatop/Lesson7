@@ -17,7 +17,7 @@
 
 В классе необходимо реализовать метод make_order(), принимающий экземпляр класса и
 количество ячеек в ряду. Данный метод позволяет организовать ячейки по рядам.
-Метод должен возвращать строку вида * ****\n*****\n*****. .., где количество ячеек между \ n
+Метод должен возвращать строку вида *****\n*****\n*****. .., где количество ячеек между \n
 равно переданному аргументу. Если ячеек на формирование ряда не хватает, то в последний
 ряд записываются все оставшиеся.
 Например, количество ячеек клетки равняется 12, количество ячеек в ряду — 5. Тогда метод
@@ -52,7 +52,6 @@ class Cell:
         else:
             print('Impossible cell')
 
-
     @chk_operands
     def __mul__(self, other):
         return Cell(self.alveolas * other.alveolas)
@@ -61,9 +60,18 @@ class Cell:
     def __truediv__(self, other):
         return Cell(int(self.alveolas / other.alveolas))
 
+    def make_order(self, order):
+        result = ''
+        for i in range(self.alveolas // order):
+            result += f'{"*" * order}\n'
+        return result + f'{"*" * (self.alveolas % order)}'
 
 a = Cell(4)
 b = Cell(16)
-c = b - a
+c = a + b
+d = b - a
+e = a * b
+f = b / a
+print(c, d, e, f)
 
-print(a, b, c)
+print(b.make_order(5))
