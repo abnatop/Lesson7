@@ -30,7 +30,36 @@ class Cell:
     def __init__(self, alveola):
         self.alveolas = alveola
 
-    def __add__(self, other):
-        if not isinstance(other, Cell):
-            raise ValueError(f'Obj {other} is NOT a Cell')
+    def __str__(self):
+        return f'{self.alveolas}'
 
+    def chk_operands(func):
+        def wrapper(*args):
+            for obj in args:
+                if not isinstance(obj, Cell):
+                    raise ValueError(f'Obj {type(obj)} is NOT a Cell')
+            return func(*args)
+        return wrapper
+
+    @chk_operands
+    def __add__(self, other):
+        return Cell(self.alveolas + other.alveolas)
+
+    @chk_operands
+    def __sub__(self, other):
+        return Cell(self.alveolas - other.alveolas)
+
+    @chk_operands
+    def __mul__(self, other):
+        return Cell(self.alveolas * other.alveolas)
+
+    @chk_operands
+    def __truediv__(self, other):
+        return Cell(self.alveolas // other.alveolas)
+
+
+a = Cell(4)
+b = Cell(12)
+c = b // a
+
+print(a, b, c)
