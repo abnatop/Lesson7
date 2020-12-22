@@ -55,11 +55,11 @@ class Cell:
 
     @chk_operands
     def __truediv__(self, other):
-        return Cell(self.alveolas // other.alveolas)
+        return Cell(int(self.alveolas / other.alveolas))
 
 
 a = Cell(4)
-b = Cell(12)
-c = b // a
+b = Cell(16)
+c = b / a
 
 print(a, b, c)
