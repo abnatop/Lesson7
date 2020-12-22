@@ -47,7 +47,11 @@ class Cell:
 
     @chk_operands
     def __sub__(self, other):
-        return Cell(self.alveolas - other.alveolas)
+        if (self.alveolas - other.alveolas) > 0:
+            return Cell(self.alveolas - other.alveolas)
+        else:
+            print('Impossible cell')
+
 
     @chk_operands
     def __mul__(self, other):
@@ -60,6 +64,6 @@ class Cell:
 
 a = Cell(4)
 b = Cell(16)
-c = b / a
+c = b - a
 
 print(a, b, c)
