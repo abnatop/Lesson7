@@ -10,7 +10,7 @@ V и H, соответственно.
 знания: реализовать абстрактные классы для основных классов проекта, проверить на
 практике работу декоратора @property .
 """
-from abc import ABC, abstractmethod
+from abc import ABC
 
 class Clothes(ABC):  # Одежда
     order_number = 1
@@ -48,7 +48,7 @@ class Suit(Clothes):  # Костюм, рост H = height
 
     def __str__(self):
         return f'Заказ {self.order_number} - [ {self.name} ], рост {self.height}, ' + \
-               'расход мат-ла {self.get_material}.'
+               f'расход мат-ла {self.get_material}.'
 
 d = [
     Coat('Пальто1', size=10),
@@ -60,4 +60,6 @@ d = [
 
 for i in d:
     print(i)
+
 print('---')
+print(f'Итого материала: ПАЛЬТО - {Coat.summary_material}, КОСТЮМЫ - {Suit.summary_material}')
